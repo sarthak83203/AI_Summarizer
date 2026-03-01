@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summarizer</title>
+   <style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:"Segoe UI",Arial,sans-serif;
+min-width:500px;
+min-height:300px;
+padding:20px;
+margin:0;
+
+/* animated background */
+
+background:linear-gradient(270deg,#4285f4,#7b61ff,#00c6ff,#4285f4);
+background-size:600% 600%;
+animation:gradientMove 10s ease infinite;
+}
+
+/* moving gradient */
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* title */
+
+h2{
+color:white;
+margin-bottom:20px;
+font-weight:600;
+letter-spacing:1px;
+animation:pulseGlow 3s infinite;
+}
+
+/* glowing title */
+
+@keyframes pulseGlow{
+0%{text-shadow:0 0 5px rgba(255,255,255,.4);}
+50%{text-shadow:0 0 15px rgba(255,255,255,.9);}
+100%{text-shadow:0 0 5px rgba(255,255,255,.4);}
+}
+
+/* options bar */
+
+.options{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+align-items:center;
+}
+
+/* dropdown */
+
+#summary-type{
+padding:8px 12px;
+border-radius:8px;
+border:none;
+font-size:14px;
+outline:none;
+background:white;
+transition:all .25s ease;
+cursor:pointer;
+}
+
+#summary-type:hover{
+transform:scale(1.08);
+box-shadow:0 6px 15px rgba(0,0,0,.25);
+}
+
+/* buttons */
+
+button{
+padding:8px 16px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+color:white;
+
+background:linear-gradient(90deg,#4285f4,#3367d6);
+
+transition:all .25s ease;
+
+position:relative;
+overflow:hidden;
+}
+
+/* floating hover */
+
+button:hover{
+transform:translateY(-4px) scale(1.07);
+box-shadow:
+0 10px 25px rgba(0,0,0,.3),
+0 0 12px rgba(66,133,244,.8);
+}
+
+/* shine animation */
+
+button::before{
+content:"";
+position:absolute;
+top:0;
+left:-75%;
+width:50%;
+height:100%;
+background:linear-gradient(120deg,
+rgba(255,255,255,0),
+rgba(255,255,255,.6),
+rgba(255,255,255,0));
+transform:skewX(-25deg);
+}
+
+button:hover::before{
+animation:shine 0.9s;
+}
+
+@keyframes shine{
+100%{
+left:125%;
+}
+}
+
+/* copy button */
+
+#copy-btn{
+background:linear-gradient(90deg,#34a853,#2e8b57);
+}
+
+#copy-btn:hover{
+box-shadow:
+0 10px 25px rgba(0,0,0,.3),
+0 0 12px rgba(52,168,83,.8);
+}
+
+/* result panel */
+
+#result{
+    margin-top:15px;
+    padding:20px;
+    border-radius:12px;
+    min-height:150px;
+    max-height:400px;
+    overflow-y:auto;
+    white-space:pre-wrap;
+    line-height:1.6;
+    font-size:20px;   /* Bigger text */
+    background:rgba(255,255,255,.95);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+    transition:all .3s ease;
+}
+
+/* breathing glow */
+
+@keyframes panelBreath{
+
+0%{
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+50%{
+box-shadow:
+0 15px 35px rgba(0,0,0,.3),
+0 0 15px rgba(66,133,244,.4);
+}
+
+100%{
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+}
+
+/* hover lift */
+
+#result:hover{
+transform:scale(1.02);
+}
+
+/* bullets */
+
+#result ul{
+padding-left:22px;
+}
+
+#result li{
+margin-bottom:10px;
+}
+
+/* loader */
+
+.loading{
+display:flex;
+justify-content:center;
+align-items:center;
+height:150px;
+}
+
+/* fancy loader */
+
+.loader{
+border:4px solid rgba(255,255,255,.3);
+border-top:4px solid white;
+border-radius:50%;
+width:36px;
+height:36px;
+animation:spin 0.9s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+/* scrollbar */
+
+#result::-webkit-scrollbar{
+width:6px;
+}
+
+#result::-webkit-scrollbar-thumb{
+background:#4285f4;
+border-radius:10px;
+}
+
+</style>
+</head>
+<body >
+    <h2>AI Summarizer</h2>
+    <div class="options">
+         <select id="summary-type">
+        <option value="brief">Brief Summary</option>
+        <option value="detailed">Detailed Summary</option>
+        <option value="bullets">Bullet Points</option>
+        <option value="short">One Sentence</option>
+        <option value="keywords">Keywords</option>
+        <option value="explainSimple">Explain Simply</option>
+        <option value="highlights">Key Highlights</option>
+        <option value="facts">Important Facts</option>
+        <option value="tweet">Tweet Summary</option>
+        <option value="title">Generate Title</option>
+        <option value="proscons">Pros & Cons</option>
+        </select>
+
+        <button id="summarize">Summarize it</button>
+        <button id="copy-btn">Copy</button>
+
+
+    </div>
+   
+    
+
+    <pre id="result">Select a type and click Summarize...</pre>
+    <script src="popup.js"></script>
+</body>
+</html>

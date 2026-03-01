@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Options</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(270deg, #4285f4, #7f53ac, #00c6ff, #4285f4);
+            background-size: 800% 800%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        /* Animated background */
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            width: 430px;
+            padding: 35px;
+            border-radius: 16px;
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* Input */
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(66, 133, 244, 0.7);
+            transform: scale(1.02);
+        }
+
+        /* Info text */
+        p {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #eee;
+        }
+
+        a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(90deg, #ff9966, #ff5e62);
+            color: white;
+            letter-spacing: 0.5px;
+            transition: 0.35s;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(255, 94, 98, 0.8);
+        }
+
+        /* Success message */
+        .success-message {
+            margin-top: 15px;
+            color: #00ff9d;
+            font-weight: 500;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1> AI Summary</h1>
+
+        <div class="form-group">
+            <label for="api-key">Groq API Key</label>
+
+            <input type="text" id="api-key" placeholder="Enter your Groq API key" />
+
+            <p>
+                You can get an API key from
+                <a href="https://console.groq.com/keys" target="_blank">Groq</a>
+            </p>
+
+        </div>
+
+        <button id="save-button"> Save Settings</button>
+
+        <p id="success-message" class="success-message">
+            Settings saved successfully
+        </p>
+
+    </div>
+
+    <script src="options.js"></script>
+
+</body>
+
+</html>
